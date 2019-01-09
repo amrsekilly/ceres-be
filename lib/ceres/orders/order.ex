@@ -34,6 +34,7 @@ defmodule Ceres.Orders.Order do
       :delivery,
       :tips,
       :creator_id,
+      :tips_on_delivery,
     ])
     |> validate_required([
       :restaurant,
@@ -42,6 +43,7 @@ defmodule Ceres.Orders.Order do
       :delivery,
       :tips,
       :creator_id,
+      :tips_on_delivery,
     ])
     |> validate_inclusion(:status, @available_statuses)
     |> foreign_key_constraint(:creator_id)
