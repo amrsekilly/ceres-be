@@ -1,8 +1,9 @@
 defmodule Ceres.Orders.Transaction do
   use Ecto.Schema
+
   import Ecto.Changeset
-  alias Ceres.Order
-  alias Ceres.User
+
+  alias Ceres.{Order, User}
 
   schema "order_transactions" do
     field(:amount, :decimal, default: 0)
