@@ -15,7 +15,7 @@ defmodule Ceres.Orders.UserOrder do
     belongs_to(:user_id, User)
     belongs_to(:order_id, Order)
     field(:status, :string, default: "pending")
-    field(:comment, :text)
+    field(:comment, :string)
     field(:vat, :decimal, default: 0)
 
     timestamps(type: :utc_datetime)
