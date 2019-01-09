@@ -30,14 +30,14 @@ defmodule Ceres.Accounts.User do
       :slack_id,
       :slack_token,
       :avatar,
-      :wallet,
+      :wallet
     ])
     |> validate_required([
       :name,
       :slack_id,
       :slack_token,
       :avatar,
-      :wallet,
+      :wallet
     ])
   end
 end
