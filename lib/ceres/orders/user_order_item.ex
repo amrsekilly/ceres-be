@@ -10,12 +10,14 @@ defmodule Ceres.Orders.UserOrderItem do
   alias Ceres.Accounts.UserOrder
 
   schema "user_order_item" do
-    belongs_to(:user_order_id, UserOrder)
     field(:name, :string)
     field(:quantity, :decimal, default: 0)
     field(:price, :decimal, default: 0)
     field(:main, :string)
     field(:fallback, :string)
+
+    belongs_to(:user_order_id, UserOrder)
+
     timestamps(type: :utc_datetime)
   end
 
@@ -27,14 +29,16 @@ defmodule Ceres.Orders.UserOrderItem do
       :quantity,
       :price,
       :main,
-      :fallback
+      :fallback,
+      :user_order_id
     ])
     |> validate_required([
       :name,
       :quantity,
       :price,
       :main,
-      :fallback
+      :fallback,
+      :user_order_id
     ])
     |> foreign_key_constraint(:user_order_id)
   end

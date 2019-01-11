@@ -12,11 +12,12 @@ defmodule Ceres.Orders.UserOrder do
   @available_statuses ["pending", "accepted", "rejected"]
 
   schema "user_orders" do
-    belongs_to(:user_id, User)
-    belongs_to(:order_id, Order)
     field(:status, :string, default: "pending")
     field(:comment, :string)
     field(:vat, :decimal, default: 0)
+
+    belongs_to(:user_id, User)
+    belongs_to(:order_id, Order)
 
     timestamps(type: :utc_datetime)
   end
@@ -27,12 +28,16 @@ defmodule Ceres.Orders.UserOrder do
     |> cast(attrs, [
       :status,
       :comment,
-      :vat
+      :vat,
+      :user_id,
+      :order_id
     ])
     |> validate_required([
       :status,
       :comment,
-      :vat
+      :vat,
+      :user_id,
+      :order_id
     ])
     |> validate_inclusion(:status, @available_statuses)
     |> foreign_key_constraint(:user_id)

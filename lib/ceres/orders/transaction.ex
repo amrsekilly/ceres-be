@@ -7,8 +7,10 @@ defmodule Ceres.Orders.Transaction do
 
   schema "order_transactions" do
     field(:amount, :decimal, default: 0)
+
     belongs_to(:order_id, Order)
     belongs_to(:teller_id, User)
+
     timestamps(type: :utc_datetime)
   end
 
