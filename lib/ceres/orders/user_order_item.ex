@@ -16,7 +16,7 @@ defmodule Ceres.Orders.UserOrderItem do
     field(:main, :string)
     field(:fallback, :string)
 
-    belongs_to(:user_order_id, UserOrder)
+    belongs_to(:user_order, UserOrder)
 
     timestamps(type: :utc_datetime)
   end
