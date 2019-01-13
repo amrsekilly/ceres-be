@@ -13,25 +13,28 @@ defmodule CeresWeb.AuthController do
       name: auth.info.name,
       avatar: image_192
     }
-
+    IO.inspect "---------------------------------"
+    IO.inspect "---------------------------------"
+    IO.inspect "---------------------------------"
     User.changeset(%User{}, user_params)
+    |> IO.inspect
     |> signin(conn)
   end
 
   def signout(conn, _) do
     conn
-    |> IO.inspect("Signout")
+    |> IO.inspect()
   end
 
   defp signin(changeset, conn) do
     case insert_update_user(changeset) do
       {:error, _} ->
         conn
-        |> IO.inspect("Something went wrong signing in!")
+        |> IO.inspect()
 
       {:ok, user} ->
         conn
-        |> IO.inspect("Logged in successfully!")
+        |> IO.inspect()
     end
   end
 
