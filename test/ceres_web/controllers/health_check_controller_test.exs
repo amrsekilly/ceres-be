@@ -13,8 +13,8 @@ defmodule CeresWeb.HealthCheckControllerTest do
         |> json_response(200)
 
       assert %{
-        "status" => "Healthy!"
-      } = response
+               "status" => "Healthy!"
+             } = response
     end
   end
 end

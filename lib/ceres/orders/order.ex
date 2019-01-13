@@ -17,6 +17,7 @@ defmodule Ceres.Orders.Order do
     field(:status, :string, default: "collecting")
     field(:delivery, :float, default: 0)
     field(:tips, :float, default: 0)
+    field(:tips_on_delivery, :float, default: 0)
 
     belongs_to(:creator, User)
 
@@ -33,6 +34,7 @@ defmodule Ceres.Orders.Order do
       :delivery,
       :tips,
       :creator_id,
+      :tips_on_delivery
     ])
     |> validate_required([
       :restaurant,
@@ -41,6 +43,7 @@ defmodule Ceres.Orders.Order do
       :delivery,
       :tips,
       :creator_id,
+      :tips_on_delivery
     ])
     |> validate_inclusion(:status, @available_statuses)
     |> foreign_key_constraint(:creator_id)
