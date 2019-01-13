@@ -7,7 +7,7 @@ defmodule Ceres.Orders.UserOrder do
 
   import Ecto.Changeset
 
-  alias Ceres.Accounts.{User, Order}
+  alias Ceres.{Accounts.User, Orders.Order}
 
   @available_statuses ["pending", "accepted", "rejected"]
 
