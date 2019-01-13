@@ -16,7 +16,7 @@ defmodule Ceres.Orders.UserOrder do
     field(:comment, :string)
     field(:vat, :decimal, default: 0)
 
-    belongs_to(:creator, User)
+    belongs_to(:teller, User)
     belongs_to(:order, Order)
 
     timestamps(type: :utc_datetime)

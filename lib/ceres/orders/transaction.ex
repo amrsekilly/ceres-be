@@ -9,7 +9,7 @@ defmodule Ceres.Orders.Transaction do
     field(:amount, :decimal, default: 0)
 
     belongs_to(:order, Order)
-    belongs_to(:creator, User)
+    belongs_to(:teller, User)
 
     timestamps(type: :utc_datetime)
   end
