@@ -6,23 +6,19 @@ defmodule Ceres.External.Slack do
   @type request_success :: {:ok, Poison.Parser.t()}
   @type error :: {:error, String.t()}
 
-  @spec send_url :: String.t()
-  defp send_url do
-    root_url() <> "/" <> channel_id() <> "/"
-  end
-
-  @spec channel_id :: String.t()
-  defp channel_id do
-    config() |> Keyword.get(:channel_id, "")
-  end
-
-  @spec root_url :: String.t()
-  defp root_url do
-    config() |> Keyword.get(:root_url, "")
-  end
-
-  @spec config :: Keyword.t()
-  defp config do
-    Application.get_env(:itk, __MODULE__, Keyword.new())
+  # GET https://slack.com/api/oauth.access?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&code=XXYYZZ
+  def getSlackOauth(code) do
+    headers = ["client_id": System.get_env("SLACK_CLIENT_ID"), "client_secret": System.get_env("SLACK_CLIENT_SECRET"), "code": code]
+    case HTTPoison.get("https://slack.com/api/oauth.access", headers) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        IO.inspect "---------------------------------"
+        IO.inspect "---------------------------------"
+        IO.inspect "---------------------------------"
+        IO.puts body
+      {:ok, %HTTPoison.Response{status_code: 404}} ->
+        IO.puts "Not found :("
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        IO.inspect reason
+    end
   end
 end
