@@ -20,7 +20,7 @@ defmodule Ceres.Mixfile do
   def application do
     [
       mod: {Ceres.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_slack]
+      extra_applications: [:logger, :runtime_tools, :httpoison]
     ]
   end
 
@@ -42,8 +42,7 @@ defmodule Ceres.Mixfile do
       {:plug_cowboy, "~> 1.0"},
       {:ex_machina, "~> 2.2", only: :test},
       {:bureaucrat, git: "https://github.com/api-hogs/bureaucrat", only: [:test, :dev]},
-      {:ueberauth, "~> 0.4"},
-      {:ueberauth_slack, "~> 0.4.1"}
+      {:httpoison, "~> 1.4"}
     ]
   end
 

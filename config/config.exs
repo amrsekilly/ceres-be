@@ -25,12 +25,12 @@ config :logger, :console,
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
 
-config :ueberauth, Ueberauth,
-  providers: [
-    # Rubikal's team ID
-    slack: {Ueberauth.Strategy.Slack, [team: "T02V520CG"]}
-  ]
+# config :ueberauth, Ueberauth,
+#   providers: [
+#     # Rubikal's team ID
+#     slack: {Ueberauth.Strategy.Slack, [team: "T02V520CG"]}
+#   ]
 
-config :ueberauth, Ueberauth.Strategy.Slack.OAuth,
-  client_id: System.get_env("SLACK_CLIENT_ID"),
-  client_secret: System.get_env("SLACK_CLIENT_SECRET")
+# config :ueberauth, Ueberauth.Strategy.Slack.OAuth,
+#   client_id: System.get_env("SLACK_CLIENT_ID"),
+#   client_secret: System.get_env("SLACK_CLIENT_SECRET")
