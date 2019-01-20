@@ -1,8 +1,8 @@
 {application,ceres,
              [{applications,[kernel,stdlib,elixir,logger,runtime_tools,
-                             httpoison,gettext,phoenix_pubsub,cowboy,postgrex,
-                             ex_machina,phoenix,plug_cowboy,bureaucrat,
-                             phoenix_ecto]},
+                             httpoison,corsica,gettext,phoenix_pubsub,cowboy,
+                             postgrex,ex_machina,plug,phoenix,plug_cowboy,
+                             bureaucrat,phoenix_ecto]},
               {description,"ceres"},
               {modules,['Elixir.Ceres','Elixir.Ceres.Accounts',
                         'Elixir.Ceres.Accounts.User',
@@ -13,6 +13,7 @@
                         'Elixir.Ceres.Orders.UserOrder',
                         'Elixir.Ceres.Orders.UserOrderItem',
                         'Elixir.Ceres.Repo','Elixir.CeresWeb',
+                        'Elixir.CeresWeb.AuthController',
                         'Elixir.CeresWeb.ChannelCase',
                         'Elixir.CeresWeb.ConnCase','Elixir.CeresWeb.Endpoint',
                         'Elixir.CeresWeb.ErrorHelpers',
@@ -24,4 +25,4 @@
               {registered,[]},
               {vsn,"0.0.1"},
               {mod,{'Elixir.Ceres.Application',[]}},
-              {extra_applications,[logger,runtime_tools,httpoison]}]}.
+              {extra_applications,[logger,runtime_tools,httpoison,corsica]}]}.
