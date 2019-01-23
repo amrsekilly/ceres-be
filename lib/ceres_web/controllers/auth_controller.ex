@@ -1,18 +1,16 @@
 defmodule CeresWeb.AuthController do
   use CeresWeb, :controller
+  alias Ceres.External.Slack
   # alias Ceres.Accounts.User
   # alias Ceres.Repo
   # plug(Ueberauth)
 
-  def login(conn, params) do
-    IO.inspect "---------------------------------"
-    IO.inspect "---------------------------------"
-    IO.inspect "---------------------------------"
-    IO.inspect conn
-    IO.inspect "---------------------------------"
-    IO.inspect "---------------------------------"
-    IO.inspect "---------------------------------"
-    IO.inspect params
+  @spec login(Plug.Conn.t(), map()) :: Plug.Conn.t()
+  def login(conn, %{"code" => code}) do
+    code
+    |> Slack.getSlackOauth()
+
+    render(conn, "user.json", code: code)
   end
 
   # def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do

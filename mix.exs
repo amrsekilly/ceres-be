@@ -42,6 +42,7 @@ defmodule Ceres.Mixfile do
       {:plug_cowboy, "~> 1.0"},
       {:ex_machina, "~> 2.2", only: :test},
       {:bureaucrat, git: "https://github.com/api-hogs/bureaucrat", only: [:test, :dev]},
+      {:poison, "~> 3.1"},
       {:httpoison, "~> 1.4"},
       {:plug, "~> 1.0"},
       {:corsica, "~> 1.0"}

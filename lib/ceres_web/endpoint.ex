@@ -43,11 +43,11 @@ defmodule CeresWeb.Endpoint do
     signing_salt: "zubSN2uo"
   )
 
-    plug(
-      Corsica,
-      origins: "*",
-      allow_headers: ["accept", "authorization", "origin", "content-type"]
-    )
+  plug(
+    Corsica,
+    origins: "*",
+    allow_headers: ["accept", "authorization", "origin", "content-type"]
+  )
 
   plug(CeresWeb.Router)
 
