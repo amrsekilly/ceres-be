@@ -1,14 +1,16 @@
 defmodule CeresWeb.AuthController do
   use CeresWeb, :controller
   alias Ceres.External.Slack
-  # alias Ceres.Accounts.User
-  # alias Ceres.Repo
+  alias Ceres.Accounts.User
+  alias Ceres.Repo
   # plug(Ueberauth)
 
   @spec login(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def login(conn, %{"code" => code}) do
     code
     |> Slack.getSlackOauth()
+    |> Poison.decode!()
+    |> signin(conn)
 
     render(conn, "user.json", code: code)
   end
@@ -35,22 +37,38 @@ defmodule CeresWeb.AuthController do
   #   |> IO.inspect()
   # end
 
-  # defp signin(changeset, conn) do
-  #   case insert_update_user(changeset) do
-  #     {:error, _} ->
-  #       conn
-  #       |> IO.inspect()
+  defp insert_update_user(%{
+         "user" => %{"id" => slack_id, "name" => name, "image_192" => image_192},
+         "access_token" => access_token
+       }) do
+    user_params = %{
+      slack_token: access_token,
+      slack_id: slack_id,
+      name: name,
+      avatar: image_192
+    }
 
-  #     {:ok, user} ->
-  #       conn
-  #       |> IO.inspect()
-  #   end
-  # end
+    changeset = User.changeset(%User{}, user_params)
 
-  # defp insert_update_user(%{changes: %{slack_id: slack_id}} = changeset) do
-  #   case user = Repo.get_by(User, slack_id: slack_id) do
-  #     nil -> Repo.insert(changeset)
-  #     user -> {:ok, user}
-  #   end
-  # end
+    case Repo.get_by(User, slack_id: slack_id) do
+      nil -> Repo.insert(changeset)
+      user -> {:ok, user}
+    end
+  end
+
+  defp insert_update_user(_) do
+    {:error, "Invalid Slack response"}
+  end
+
+  defp signin(changeset, conn) do
+    case insert_update_user(changeset) do
+      {:error, _} ->
+        conn
+        |> IO.inspect()
+
+      {:ok, user} ->
+        conn
+        |> IO.inspect()
+    end
+  end
 end

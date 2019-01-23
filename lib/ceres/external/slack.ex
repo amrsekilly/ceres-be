@@ -14,11 +14,11 @@ defmodule Ceres.External.Slack do
       {:code, code}
     ]
 
-    headers = [{"Content-Type", "multipart/form-data"}]
+    headers = [{"Content-Type", "application/x-www-form-urlencoded"}]
 
     case HTTPoison.post("https://slack.com/api/oauth.access", {:form, data}, headers) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        IO.puts(body)
+        body
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         IO.puts("Resource Not found!")
