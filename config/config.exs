@@ -21,6 +21,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+# Configures Guardian
+config :ceres, Ceres.Guardian,
+  issuer: "ceres",
+  secret_key: "tpiK7jYQyf1GWEnC/CboAzxJviL2LX2qSKqThKLWFlSp49e4tPJwDOmObU3EFt5B"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

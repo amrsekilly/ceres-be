@@ -1,5 +1,5 @@
 {application,guardian,
-             [{applications,[kernel,stdlib,elixir,crypto,logger,jose,poison]},
+             [{applications,[kernel,stdlib,elixir,crypto,logger,jose]},
               {description,"Elixir Authentication framework"},
               {modules,['Elixir.Guardian','Elixir.Guardian.Config',
                         'Elixir.Guardian.MalformedReturnValueError',
@@ -10,6 +10,7 @@
                         'Elixir.Guardian.Plug',
                         'Elixir.Guardian.Plug.EnsureAuthenticated',
                         'Elixir.Guardian.Plug.EnsureNotAuthenticated',
+                        'Elixir.Guardian.Plug.ErrorHandler',
                         'Elixir.Guardian.Plug.Keys',
                         'Elixir.Guardian.Plug.LoadResource',
                         'Elixir.Guardian.Plug.Pipeline',
@@ -24,5 +25,5 @@
                         'Elixir.Guardian.Token.Verify','Elixir.Guardian.UUID',
                         'Elixir.Mix.Tasks.Guardian.Gen.Secret']},
               {registered,[]},
-              {vsn,"1.1.1"},
+              {vsn,"1.2.1"},
               {extra_applications,[crypto,logger]}]}.

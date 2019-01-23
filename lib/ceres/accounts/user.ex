@@ -17,6 +17,7 @@ defmodule Ceres.Accounts.User do
     field(:avatar, :string)
     field(:wallet, :float, default: 0.0)
     field(:is_admin, :boolean, default: false)
+    field(:jwt, :string, virtual: true)
 
     has_many(:orders, Order, foreign_key: :creator_id)
 
@@ -32,7 +33,8 @@ defmodule Ceres.Accounts.User do
       :slack_token,
       :avatar,
       :wallet,
-      :is_admin
+      :is_admin,
+      :jwt
     ])
     |> validate_required([
       :name,

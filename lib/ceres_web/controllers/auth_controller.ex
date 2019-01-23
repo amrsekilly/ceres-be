@@ -1,5 +1,6 @@
 defmodule CeresWeb.AuthController do
   use CeresWeb, :controller
+  use Guardian, otp_app: :my_app
   alias Ceres.External.Slack
   alias Ceres.Accounts.User
   alias Ceres.Repo
@@ -47,6 +48,32 @@ defmodule CeresWeb.AuthController do
 
       {:ok, user} ->
         user
+        |> append_jwt()
     end
   end
+
+  defp append_jwt(user) do
+    generated_jwt =
+      user
+      |> generate_jwt()
+
+    user
+    |> Map.put(:jwt, generated_jwt)
+  end
+
+  defp generate_jwt(%Ceres.Accounts.User{slack_id: slack_id}) do
+    to_string(slack_id)
+  end
+
+  # def resource_from_claims(claims) do
+  #   # Here we'll look up our resource from the claims, the subject can be
+  #   # found in the `"sub"` key. In `above subject_for_token/2` we returned
+  #   # the resource id so here we'll rely on that to look it up.
+  #   # id = claims["sub"]
+  #   # resource = MyApp.get_resource_by_id(id)
+  #   # {:ok,  resource}
+  # end
+  # def resource_from_claims(_claims) do
+  #   {:error, "User is not authorized!"}
+  # end
 end
