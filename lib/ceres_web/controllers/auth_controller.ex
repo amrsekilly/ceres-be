@@ -13,8 +13,6 @@ defmodule CeresWeb.AuthController do
       |> Poison.decode!()
       |> signin(conn)
 
-    # IO.inspect(user)
-
     render(conn, "user.json", user: user)
   end
 
