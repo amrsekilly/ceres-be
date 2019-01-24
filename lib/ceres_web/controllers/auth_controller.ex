@@ -17,7 +17,8 @@ defmodule CeresWeb.AuthController do
 
   defp insert_update_user(%{
          "user" => %{"id" => slack_id, "name" => name, "image_192" => image_192},
-         "access_token" => access_token
+         "access_token" => access_token,
+         "team" => %{"id" => "T02V520CG"}
        }) do
     user_params = %{
       slack_token: access_token,
