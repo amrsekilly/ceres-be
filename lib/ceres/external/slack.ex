@@ -3,10 +3,6 @@ defmodule Ceres.External.Slack do
   Handles interactions with Slack's API.
   """
 
-  @type request_success :: {:ok, Poison.Parser.t()}
-  @type error :: {:error, String.t()}
-
-  # GET https://slack.com/api/oauth.access?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&code=XXYYZZ
   def getSlackOauth(code) do
     data = [
       {:client_id, System.get_env("SLACK_CLIENT_ID")},
