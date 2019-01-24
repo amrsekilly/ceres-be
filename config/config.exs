@@ -26,6 +26,10 @@ config :ceres, CeresWeb.Guardian,
   issuer: "ceres",
   secret_key: "tpiK7jYQyf1GWEnC/CboAzxJviL2LX2qSKqThKLWFlSp49e4tPJwDOmObU3EFt5B"
 
+config :ceres, CeresWeb.AuthAccessPipeline,
+  module: CeresWeb.Guardian,
+  error_handler: CeresWeb.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

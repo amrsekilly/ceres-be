@@ -62,7 +62,6 @@ defmodule CeresWeb.AuthController do
 
   defp generate_jwt(%Ceres.Accounts.User{slack_id: slack_id}) do
     {:ok, token, _} = CeresWeb.Guardian.encode_and_sign(slack_id)
-    # to_string(slack_id)
     token
   end
 
