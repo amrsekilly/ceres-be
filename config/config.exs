@@ -22,7 +22,7 @@ config :logger, :console,
   metadata: [:user_id]
 
 # Configures Guardian
-config :ceres, Ceres.Guardian,
+config :ceres, CeresWeb.Guardian,
   issuer: "ceres",
   secret_key: "tpiK7jYQyf1GWEnC/CboAzxJviL2LX2qSKqThKLWFlSp49e4tPJwDOmObU3EFt5B"
 

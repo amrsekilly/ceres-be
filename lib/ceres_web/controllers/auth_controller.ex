@@ -1,6 +1,5 @@
 defmodule CeresWeb.AuthController do
   use CeresWeb, :controller
-  use Guardian, otp_app: :my_app
   alias Ceres.External.Slack
   alias Ceres.Accounts.User
   alias Ceres.Repo
@@ -62,7 +61,9 @@ defmodule CeresWeb.AuthController do
   end
 
   defp generate_jwt(%Ceres.Accounts.User{slack_id: slack_id}) do
-    to_string(slack_id)
+    {:ok, token, _} = CeresWeb.Guardian.encode_and_sign(slack_id)
+    # to_string(slack_id)
+    token
   end
 
   # def resource_from_claims(claims) do
