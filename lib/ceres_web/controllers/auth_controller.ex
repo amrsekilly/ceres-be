@@ -3,7 +3,6 @@ defmodule CeresWeb.AuthController do
   alias Ceres.External.Slack
   alias Ceres.Accounts.User
   alias Ceres.Repo
-  # plug(Ueberauth)
 
   @spec login(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def login(conn, %{"code" => code}) do
@@ -64,16 +63,4 @@ defmodule CeresWeb.AuthController do
     {:ok, token, _} = CeresWeb.Guardian.encode_and_sign(slack_id)
     token
   end
-
-  # def resource_from_claims(claims) do
-  #   # Here we'll look up our resource from the claims, the subject can be
-  #   # found in the `"sub"` key. In `above subject_for_token/2` we returned
-  #   # the resource id so here we'll rely on that to look it up.
-  #   # id = claims["sub"]
-  #   # resource = MyApp.get_resource_by_id(id)
-  #   # {:ok,  resource}
-  # end
-  # def resource_from_claims(_claims) do
-  #   {:error, "User is not authorized!"}
-  # end
 end
