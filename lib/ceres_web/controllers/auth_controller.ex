@@ -15,7 +15,7 @@ defmodule CeresWeb.AuthController do
     render(conn, "user.json", user: user)
   end
 
-  defp insert_update_user(%{
+  defp insert_return_user(%{
          "user" => %{"id" => slack_id, "name" => name, "image_192" => image_192},
          "access_token" => access_token,
          "team" => %{"id" => "T02V520CG"}
@@ -35,12 +35,12 @@ defmodule CeresWeb.AuthController do
     end
   end
 
-  defp insert_update_user(_) do
+  defp insert_return_user(_) do
     {:error, "Invalid Slack response"}
   end
 
   defp signin(changeset, conn) do
-    case insert_update_user(changeset) do
+    case insert_return_user(changeset) do
       {:error, _} ->
         conn
         |> IO.inspect()
