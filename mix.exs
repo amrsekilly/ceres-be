@@ -46,7 +46,8 @@ defmodule Ceres.Mixfile do
       {:httpoison, "~> 1.4"},
       {:plug, "~> 1.0"},
       {:corsica, "~> 1.0"},
-      {:guardian, "~> 1.0"}
+      {:guardian, "~> 1.0"},
+      {:jason, "~> 1.1"}
     ]
   end
 
