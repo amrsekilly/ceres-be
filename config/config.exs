@@ -24,7 +24,7 @@ config :logger, :console,
 # Configures Guardian
 config :ceres, CeresWeb.Guardian,
   issuer: "ceres",
-  secret_key: "tpiK7jYQyf1GWEnC/CboAzxJviL2LX2qSKqThKLWFlSp49e4tPJwDOmObU3EFt5B"
+  secret_key: System.get_env("GUARDIAN_SECRET")
 
 config :ceres, CeresWeb.AuthAccessPipeline,
   module: CeresWeb.Guardian,

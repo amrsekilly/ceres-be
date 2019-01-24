@@ -12,12 +12,4 @@ defmodule CeresWeb.Router do
 
     post("/login", AuthController, :login)
   end
-
-  scope "/auth", CeresWeb do
-    pipe_through(:api)
-
-    get("/signout", AuthController, :signout)
-    get("/slack", AuthController, :request)
-    get("/slack/callback", AuthController, :callback)
-  end
 end
