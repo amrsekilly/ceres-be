@@ -20,7 +20,7 @@ defmodule Ceres.Mixfile do
   def application do
     [
       mod: {Ceres.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :httpoison, :corsica]
     ]
   end
 
@@ -39,9 +39,15 @@ defmodule Ceres.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 1.0"},
       {:ex_machina, "~> 2.2", only: :test},
       {:bureaucrat, git: "https://github.com/api-hogs/bureaucrat", only: [:test, :dev]},
-      {:poison, "~> 3.0"}
+      {:poison, "~> 3.1"},
+      {:httpoison, "~> 1.4"},
+      {:plug, "~> 1.0"},
+      {:corsica, "~> 1.0"},
+      {:guardian, "~> 1.0"},
+      {:jason, "~> 1.1"}
     ]
   end
 

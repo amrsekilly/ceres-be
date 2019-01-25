@@ -9,5 +9,7 @@ defmodule CeresWeb.Router do
 
   scope "/api", CeresWeb do
     pipe_through(:api)
+
+    post("/login", AuthController, :login)
   end
 end

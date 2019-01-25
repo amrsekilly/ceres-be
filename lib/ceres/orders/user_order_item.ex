@@ -7,7 +7,7 @@ defmodule Ceres.Orders.UserOrderItem do
 
   import Ecto.Changeset
 
-  alias Ceres.Accounts.UserOrder
+  alias Ceres.Orders.UserOrder
 
   schema "user_order_item" do
     field(:name, :string)
