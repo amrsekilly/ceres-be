@@ -15,7 +15,8 @@ defmodule Ceres.Accounts.User do
     field(:slack_id, :string)
     field(:slack_token, :string)
     field(:avatar, :string)
-    field(:wallet, :float, default: 0.0)
+    field(:allowance, :float, default: 0.0)
+    field(:personal_deposit, :float, default: 0.0)
     field(:is_admin, :boolean, default: false)
     field(:jwt, :string, virtual: true)
 
@@ -32,7 +33,8 @@ defmodule Ceres.Accounts.User do
       :slack_id,
       :slack_token,
       :avatar,
-      :wallet,
+      :allowance,
+      :personal_deposit,
       :is_admin,
       :jwt
     ])
@@ -41,7 +43,8 @@ defmodule Ceres.Accounts.User do
       :slack_id,
       :slack_token,
       :avatar,
-      :wallet,
+      :allowance,
+      :personal_deposit,
       :is_admin
     ])
   end
