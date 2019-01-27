@@ -20,5 +20,7 @@ defmodule CeresWeb.Router do
   scope "/api", CeresWeb do
     pipe_through(:api)
     pipe_through(:auth)
+
+    get("/wallet", UserController, :get_wallet)
   end
 end
