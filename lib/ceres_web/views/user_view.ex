@@ -5,7 +5,7 @@ defmodule CeresWeb.UserView do
     %{
       wallet: allowance + personal_deposit,
       allowance: allowance,
-      personal_deposit: personal_deposit
+      personalDeposit: personal_deposit
     }
   end
 
