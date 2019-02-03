@@ -5,8 +5,6 @@ defmodule CeresWeb.AuthView do
         user: %Ceres.Accounts.User{
           name: name,
           avatar: avatar,
-          allowance: allowance,
-          personal_deposit: personal_deposit,
           is_admin: isAdmin,
           jwt: jwt
         }
@@ -14,7 +12,6 @@ defmodule CeresWeb.AuthView do
     %{
       name: name,
       avatar: avatar,
-      wallet: allowance + personal_deposit,
       isAdmin: isAdmin,
       jwt: jwt
     }
