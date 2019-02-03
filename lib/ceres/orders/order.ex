@@ -38,7 +38,6 @@ defmodule Ceres.Orders.Order do
     ])
     |> validate_required([
       :restaurant,
-      :url,
       :status,
       :delivery,
       :tips,
