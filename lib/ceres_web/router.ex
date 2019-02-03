@@ -22,5 +22,6 @@ defmodule CeresWeb.Router do
     pipe_through(:auth)
 
     get("/wallet", UserController, :get_wallet)
+    resources("/orders", OrdersController, only: [:create, :show])
   end
 end

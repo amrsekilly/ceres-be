@@ -15,9 +15,9 @@ defmodule Ceres.Orders.Order do
     field(:restaurant, :string)
     field(:url, :string)
     field(:status, :string, default: "collecting")
-    field(:delivery, :float, default: 0)
-    field(:tips, :float, default: 0)
-    field(:tips_on_delivery, :float, default: 0)
+    field(:delivery, :float, default: 0.0)
+    field(:tips, :float, default: 0.0)
+    field(:tips_on_delivery, :float, default: 0.0)
 
     belongs_to(:creator, User)
 
