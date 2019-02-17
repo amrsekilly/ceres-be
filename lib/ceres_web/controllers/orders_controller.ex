@@ -20,8 +20,9 @@ defmodule CeresWeb.OrdersController do
     orders =
       from(order in Order,
         where:
-          order.status == "collecting" or order.status == "ordering" or
-            order.status == "on_the_way" or order.status == "recieved"
+          order.status == "collecting" or
+          order.status == "on_the_way" or
+          order.status == "received"
       )
       |> order_by(desc: :inserted_at)
       |> Repo.all()

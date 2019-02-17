@@ -9,7 +9,7 @@ defmodule Ceres.Orders.Order do
 
   alias Ceres.Accounts.User
 
-  @available_statuses ["collecting", "ordering", "on_the_way", "received", "settled", "cancelled"]
+  @available_statuses ["collecting", "on_the_way", "received", "settled", "cancelled"]
 
   schema "orders" do
     field(:restaurant, :string)
