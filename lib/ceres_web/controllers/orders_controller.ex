@@ -41,7 +41,7 @@ defmodule CeresWeb.OrdersController do
         where:
           order.status == "settled"
       )
-      |> order_by(desc: :inserted_at)
+      |> order_by(desc: :updated_at)
       |> Repo.all()
 
     render(conn, "index.json", orders: orders)
