@@ -13,10 +13,16 @@ defmodule CeresWeb.OrdersController do
 
   def index(conn, params) do
     query = from order in Order,
-     where: order.status == "collecting" or order.status == "ordering"
+     where: order.status == "collecting" or order.status == "ordering" or order.status == "on_the_way" or order.status == "recieved"
 
     orders = Repo.all(query)
 
     render(conn, "index.json", orders: orders)
+  end
+
+  def show(conn, %{"id" => id}) do
+    order = Repo.get(Order, id)
+
+    render(conn, "show.json", order: order)
   end
 end
