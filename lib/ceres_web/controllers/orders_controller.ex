@@ -5,15 +5,24 @@ defmodule CeresWeb.OrdersController do
   import Ecto.Query
 
   def create(conn, %{"data" => %{"name" => name, "url" => url}}) do
-    {:ok, order} = Repo.insert(%Order{%Order{} | restaurant: name, url: url,
-    creator_id: conn.private.guardian_default_resource.id })
+    {:ok, order} =
+      Repo.insert(%Order{
+        %Order{}
+        | restaurant: name,
+          url: url,
+          creator_id: conn.private.guardian_default_resource.id
+      })
 
     render(conn, "order.json", order: order)
   end
 
   def index(conn, params) do
-    query = from order in Order,
-     where: order.status == "collecting" or order.status == "ordering" or order.status == "on_the_way" or order.status == "recieved"
+    query =
+      from(order in Order,
+        where:
+          order.status == "collecting" or order.status == "ordering" or
+            order.status == "on_the_way" or order.status == "recieved"
+      )
 
     orders = Repo.all(query)
 

@@ -3,7 +3,6 @@ defmodule CeresWeb.HealthCheckControllerTest do
 
   describe "show/2" do
     test "it is healthy", %{conn: conn} do
-
       response =
         build_conn()
         |> get(health_check_path(conn, :show))

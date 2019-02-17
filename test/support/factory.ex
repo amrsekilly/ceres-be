@@ -1,5 +1,4 @@
 defmodule Ceres.Factory do
-
   use ExMachina.Ecto, repo: Ceres.Repo
 
   def user_factory do
@@ -16,5 +15,4 @@ defmodule Ceres.Factory do
       creator: build(:user)
     }
   end
-
 end

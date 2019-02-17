@@ -24,5 +24,4 @@ defmodule CeresWeb.OrdersView do
   def render("show.json", %{order: order}) do
     %{data: render_one(order, __MODULE__, "order.json", as: :order)}
   end
-
 end
