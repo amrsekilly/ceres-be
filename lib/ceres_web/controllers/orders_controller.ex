@@ -24,7 +24,7 @@ defmodule CeresWeb.OrdersController do
             order.status == "on_the_way" or order.status == "recieved"
       )
       |> order_by(desc: :inserted_at)
-      |> Repo.all
+      |> Repo.all()
 
     render(conn, "index.json", orders: orders)
   end
@@ -38,8 +38,7 @@ defmodule CeresWeb.OrdersController do
   def get_old_orders(conn, params) do
     orders =
       from(order in Order,
-        where:
-          order.status == "settled"
+        where: order.status == "settled"
       )
       |> order_by(desc: :updated_at)
       |> Repo.all()
