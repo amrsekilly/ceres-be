@@ -11,17 +11,17 @@ defmodule CeresWeb.Router do
 
   get("/status", CeresWeb.HealthCheckController, :show)
 
-  scope "/api/login", CeresWeb do
+  scope "/api/v1/login", CeresWeb do
     pipe_through(:api)
 
     post("/", AuthController, :login)
   end
 
-  scope "/api", CeresWeb do
+  scope "/api/v1", CeresWeb do
     pipe_through(:api)
     pipe_through(:auth)
 
     get("/wallet", UserController, :get_wallet)
-    resources("/orders", OrdersController, only: [:create, :show])
+    resources("/orders", OrdersController, only: [:create, :show, :index])
   end
 end

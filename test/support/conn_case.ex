@@ -20,6 +20,8 @@ defmodule CeresWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       import CeresWeb.Router.Helpers
+
+      import Ceres.Factory
       import Bureaucrat.Helpers
 
       # The default endpoint for testing

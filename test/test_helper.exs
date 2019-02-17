@@ -8,5 +8,6 @@ Bureaucrat.start(
 )
 
 ExUnit.start(formatters: [ExUnit.CLIFormatter, Bureaucrat.Formatter])
+Faker.start()
 
 Ecto.Adapters.SQL.Sandbox.mode(Ceres.Repo, :manual)

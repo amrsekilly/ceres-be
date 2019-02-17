@@ -22,6 +22,7 @@ defmodule Ceres.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Ceres.DataCase
+      import Ceres.Factory
     end
   end
 
