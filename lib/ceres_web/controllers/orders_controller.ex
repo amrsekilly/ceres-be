@@ -4,12 +4,12 @@ defmodule CeresWeb.OrdersController do
   alias Ceres.Repo
   alias Ceres.Orders.Order
 
-  def create(conn, %{"data" => %{"name" => name, "url" => url}}) do
+  def create(conn, params = %{"data" => %{"name" => name}}) do
     {:ok, order} =
       Repo.insert(%Order{
         %Order{}
         | restaurant: name,
-          url: url,
+          url: params["data"]["url"],
           creator_id: conn.private.guardian_default_resource.id
       })
 
