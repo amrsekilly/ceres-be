@@ -23,6 +23,6 @@ defmodule CeresWeb.Router do
 
     get("/wallet", UserController, :get_wallet)
     resources("/orders", OrdersController, only: [:create, :show, :index])
-    # resources("/orders/:orderId", OrdersControlelr, only: [:show])
+    get("/old-orders", OrdersController, :get_old_orders)
   end
 end

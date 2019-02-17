@@ -34,4 +34,16 @@ defmodule CeresWeb.OrdersController do
 
     render(conn, "show.json", order: order)
   end
+
+  def get_old_orders(conn, params) do
+    query =
+      from(order in Order,
+        where:
+          order.status == "settled"
+      )
+
+    orders = Repo.all(query)
+
+    render(conn, "index.json", orders: orders)
+  end
 end
