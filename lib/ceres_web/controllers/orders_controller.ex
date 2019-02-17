@@ -1,8 +1,8 @@
 defmodule CeresWeb.OrdersController do
+  import Ecto.Query
   use CeresWeb, :controller
   alias Ceres.Repo
   alias Ceres.Orders.Order
-  import Ecto.Query
 
   def create(conn, %{"data" => %{"name" => name, "url" => url}}) do
     {:ok, order} =
@@ -17,14 +17,14 @@ defmodule CeresWeb.OrdersController do
   end
 
   def index(conn, params) do
-    query =
+    orders =
       from(order in Order,
         where:
           order.status == "collecting" or order.status == "ordering" or
             order.status == "on_the_way" or order.status == "recieved"
       )
-
-    orders = Repo.all(query)
+      |> order_by(desc: :inserted_at)
+      |> Repo.all
 
     render(conn, "index.json", orders: orders)
   end
@@ -36,13 +36,13 @@ defmodule CeresWeb.OrdersController do
   end
 
   def get_old_orders(conn, params) do
-    query =
+    orders =
       from(order in Order,
         where:
           order.status == "settled"
       )
-
-    orders = Repo.all(query)
+      |> order_by(desc: :inserted_at)
+      |> Repo.all()
 
     render(conn, "index.json", orders: orders)
   end
