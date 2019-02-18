@@ -39,7 +39,9 @@ defmodule CeresWeb.OrdersController do
   def get_old_orders(conn, params) do
     orders =
       from(order in Order,
-        where: order.status == "settled"
+        where:
+          order.status == "settled" or
+            order.status == "cancelled"
       )
       |> order_by(desc: :updated_at)
       |> Repo.all()
