@@ -24,7 +24,7 @@ defmodule CeresWeb.OrdersController do
             order.status == "on_the_way" or
             order.status == "received"
       )
-      |> order_by(desc: :inserted_at)
+      |> order_by(desc: :updated_at)
       |> Repo.all()
 
     render(conn, "index.json", orders: orders)
