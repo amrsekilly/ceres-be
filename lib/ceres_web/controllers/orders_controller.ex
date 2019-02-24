@@ -13,12 +13,19 @@ defmodule CeresWeb.OrdersController do
           creator_id: conn.private.guardian_default_resource.id
       })
 
+    send_slack_message(
+      "#{conn.private.guardian_default_resource.name} is ordering from #{name}, <!channe>! \n https://ceres.rubikal.com/orders/#{
+        order.id
+      }"
+    )
+
+    render(conn, "order.json", order: order)
+  end
+
+  defp send_slack_message(message) do
     body =
       Poison.encode!(%{
-        text:
-          "#{conn.private.guardian_default_resource.name} is ordering from #{name}, <!channel>! \n https://ceres.rubikal.com/orders/#{
-            order.id
-          }"
+        text: message
       })
 
     HTTPoison.post(
@@ -26,8 +33,6 @@ defmodule CeresWeb.OrdersController do
       body,
       [{"Content-Type", "application/json"}]
     )
-
-    render(conn, "order.json", order: order)
   end
 
   def index(conn, params) do
