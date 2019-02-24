@@ -13,10 +13,19 @@ defmodule CeresWeb.OrdersController do
           creator_id: conn.private.guardian_default_resource.id
       })
 
-    body = Poison.encode!(%{
-      "text": "#{conn.private.guardian_default_resource.name} is ordering from #{name}, <!channel>! \n https://ceres.rubikal.com/orders/#{order.id}"
-    })
-    HTTPoison.post "https://hooks.slack.com/services/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", body, [{"Content-Type", "application/json"}]
+    body =
+      Poison.encode!(%{
+        text:
+          "#{conn.private.guardian_default_resource.name} is ordering from #{name}, <!channel>! \n https://ceres.rubikal.com/orders/#{
+            order.id
+          }"
+      })
+
+    HTTPoison.post(
+      "https://hooks.slack.com/services/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",
+      body,
+      [{"Content-Type", "application/json"}]
+    )
 
     render(conn, "order.json", order: order)
   end
