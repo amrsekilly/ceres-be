@@ -13,24 +13,50 @@ defmodule CeresWeb.OrdersController do
           creator_id: conn.private.guardian_default_resource.id
       })
 
+    # send_slack_message(
+    #   "#{conn.private.guardian_default_resource.name} is ordering from #{name}, <!channe>! \n https://ceres.rubikal.com/orders/#{
+    #     order.id
+    #   }"
+    # )
+
     send_slack_message(
-      "#{conn.private.guardian_default_resource.name} is ordering from #{name}, <!channe>! \n https://ceres.rubikal.com/orders/#{
-        order.id
-      }"
+      Poison.encode!(%{
+        attachments: [
+          %{
+            text:
+              "#{conn.private.guardian_default_resource.name} is ordering from #{name}, <!channe>! \n https://ceres.rubikal.com/orders/#{
+                order.id
+              }",
+            fallback: "You are unable to decide",
+            callback_id: "order_callback",
+            color: "#3AA3E3",
+            attachment_type: "default",
+            actions: [
+              %{
+                name: "order",
+                text: "Will order",
+                type: "button",
+                value: "will_order"
+              },
+              %{
+                name: "order",
+                text: "Not interesetd",
+                type: "button",
+                value: "not_interested"
+              }
+            ]
+          }
+        ]
+      })
     )
 
     render(conn, "order.json", order: order)
   end
 
   defp send_slack_message(message) do
-    body =
-      Poison.encode!(%{
-        text: message
-      })
-
     HTTPoison.post(
       "https://hooks.slack.com/services/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",
-      body,
+      message,
       [{"Content-Type", "application/json"}]
     )
   end
