@@ -17,6 +17,12 @@ defmodule CeresWeb.Router do
     post("/", AuthController, :login)
   end
 
+  scope "/slack_interaction", CeresWeb do
+    pipe_through(:api)
+
+    post("/", SlackController, :interaction)
+  end
+
   scope "/api/v1", CeresWeb do
     pipe_through(:api)
     pipe_through(:auth)
